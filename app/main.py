@@ -2,7 +2,7 @@ import sys
 
 
 def main():
-    #while True:  # Keep the shell running in a loop
+    while True:  # Keep the shell running in a loop
         # Display the shell prompt
         sys.stdout.write("$ ")
         sys.stdout.flush()
@@ -17,7 +17,7 @@ def main():
         if user_command not in allowed_commands:
             print(f"{user_command}: command not found")
         else:
-            print  # Exit loop if the command is valid (not required in this stage)
+            break  # Exit loop if the command is valid (not required in this stage)
 
 
 if __name__ == "__main__":
