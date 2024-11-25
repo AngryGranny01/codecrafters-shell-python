@@ -7,6 +7,7 @@ ALLOWED_COMMANDS = ["echo", "type", "pwd", "cd"]
 
 # Get the PATH environment variable
 PATH_ENV = os.environ.get("PATH", "")
+HOME_ENV = os.environ.get("HOME","")
 
 def main():
     while True:  # Keep the shell running in a loop
@@ -96,6 +97,8 @@ def handle_cd(path):
     if path.startswith("./") or path.startswith("../"):
         # Relative paths: change directory directly
         os.chdir(path)
+    elif path == "~":
+        os.chdir(HOME_ENV)
     elif os.path.isabs(path):
         # Absolute paths
         if os.path.exists(path) and os.path.isdir(path):
