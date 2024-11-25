@@ -41,8 +41,6 @@ def main():
                 handle_pwd()
             elif base_command == "cd":
                 handle_cd(command_parts[1])
-                handle_pwd()
-
 
 def handle_echo(args):
     """Handle the echo command."""
@@ -103,6 +101,7 @@ def handle_cd(directory):
         print("do something")
     else:
         os.chdir(directory)
+        print(os.getcwd())
 
 if __name__ == "__main__":
     main()
