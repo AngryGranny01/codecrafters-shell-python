@@ -8,26 +8,28 @@ def main():
         sys.stdout.flush()
 
         # Read user input
-        user_command = input()
+        user_command = input().strip()
+        
+        # Exit command
+        if user_command == "exit 0":
+            break
 
         # Allowed commands (empty in this stage as we handle only missing commands)
-        allowed_commands = ["exit 0", "echo"]
+        allowed_commands = ["echo"]
 
+        command_parts = user_command.split()
+        base_command = command_parts[0] if command_parts else ""
 
         # Check if the command is not in the allowed commands
-        if user_command not in allowed_commands:
+        if base_command not in allowed_commands:
             print(f"{user_command}: command not found")
         else:
-            if user_command == "exit 0":
-                break
-            commands(user_command) # Exit loop if the command is valid (not required in this stage)
+            if base_command == "echo":
+                handle_echo(command_parts[1:])
+            
 
-def commands(command):
-    match command:
-        case "echo":
-            print(f"{command[5:]}\n") 
-        case _:
-            return "Something's wrong with the internet"
+def handle_echo(args):
+    print("".join(args))
 
 if __name__ == "__main__":
     main()
