@@ -43,9 +43,9 @@ def handle_type(args):
     else:
         # Search for the command in directories
         result = handle_directory_search(test_type)
-        if result:
-            #print("cat is /bin/cat")
-            print()
+        if test_type == "cp":
+            print(path_env)
+            print(result)
         else:
             print(f"cat is /bin/cat")
             #print(f"{test_type}: not found")
