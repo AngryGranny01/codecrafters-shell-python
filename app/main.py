@@ -27,7 +27,7 @@ def main():
 
         command_path = handle_directory_search(base_command)
         if command_path:
-            print(executeProgram(command_path))
+            print(executeProgram(command_path),command_parts[1:])
 
         # Check if the command is not in the allowed commands
         elif base_command not in ALLOWED_COMMANDS:
