@@ -93,13 +93,13 @@ def handle_pwd():
     print(cwd)
 
 def handle_cd(directory):
-    if directory is "./":
+    if directory == "./":
         print("do something")
-    elif directory is "../":
+    elif directory == "../":
         print("do something")
-    elif directory is "./dir":
+    elif directory == "./dir":
         print("do something")
-    elif directory is "~":
+    elif directory == "~":
         print("do something")
     else:
         os.chdir('directory')
