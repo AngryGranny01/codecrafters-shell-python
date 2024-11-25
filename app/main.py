@@ -4,8 +4,6 @@ import sys
 # Allowed commands
 allowed_commands = ["echo", "type"]
 
-#Path env
-path_env = os.environ.get("PATH")
 
 def main():
     while True:  # Keep the shell running in a loop
@@ -43,15 +41,14 @@ def handle_type(args):
     else:
         # Search for the command in directories
         result = handle_directory_search(test_type)
-        if test_type == "cp":
-            print(path_env)
+        if result:
             print(result)
         else:
-            print(f"cat is /bin/cat")
-            #print(f"{test_type}: not found")
+            print(f"{test_type}: not found")
             
 
 def handle_directory_search(cmd):
+    path_env=os.getenv("PATH").split(":")
     directories = path_env.split(":")
     for directory in directories:
         execFile = directory.split("/")
