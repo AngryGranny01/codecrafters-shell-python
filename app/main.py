@@ -43,6 +43,7 @@ def handle_type(args):
     else:
         # Search for the command in directories
         result = handle_directory_search(test_type)
+        print(result)
         if result:
             print("cat is /bin/cat")
         else:
