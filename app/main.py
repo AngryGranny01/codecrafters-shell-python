@@ -54,7 +54,6 @@ def handle_directory_search(cmd):
         execFile = directory.split("/")
         if(execFile == cmd):
             return directory
-    sys.stdout.write(path_env)
 
 if __name__ == "__main__":
     main()
