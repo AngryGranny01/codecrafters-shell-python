@@ -103,7 +103,7 @@ def handle_cd(directory):
     elif directory == "~":
         print("do something")
     else:
-        os.chdir('directory')
+        os.chdir(directory)
 
 if __name__ == "__main__":
     main()
