@@ -41,6 +41,7 @@ def main():
                 handle_pwd()
             elif base_command == "cd":
                 handle_cd(command_parts[1])
+                continue
 
 def handle_echo(args):
     """Handle the echo command."""
