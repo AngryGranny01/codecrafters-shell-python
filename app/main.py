@@ -1,4 +1,5 @@
 import os
+import subprocess
 import sys
 
 # Allowed commands
@@ -24,6 +25,10 @@ def main():
         command_parts = user_command.split()
         base_command = command_parts[0] if command_parts else ""
 
+        command_path = handle_directory_search(base_command)
+        if command_path:
+            print(executeProgram(command_path))
+
         # Check if the command is not in the allowed commands
         if base_command not in ALLOWED_COMMANDS:
             print(f"{base_command}: command not found")
@@ -32,7 +37,6 @@ def main():
                 handle_echo(command_parts[1:])
             elif base_command == "type":
                 handle_type(command_parts[1:])
-
 
 def handle_echo(args):
     """Handle the echo command."""
@@ -58,7 +62,6 @@ def handle_type(args):
         else:
             print(f"{command}: not found")
 
-
 def handle_directory_search(cmd):
     """Search for a command in the PATH directories."""
     directories = PATH_ENV.split(":")
@@ -67,6 +70,17 @@ def handle_directory_search(cmd):
         if os.path.isfile(command_path) and os.access(command_path, os.X_OK):
             return command_path  # Return the full path if command is found
     return None  # Command not found
+
+def executeProgram(program_path, args=[]):
+    try:
+        result = subprocess.run([program_path] + args, capture_output=True)
+        return result
+    except FileNotFoundError:
+        print(f"{program_path}: Command not found")
+    except PermissionError:
+        print(f"{program_path}: Permission denied")
+    except Exception as e:
+        print(f"Error executing {program_path}: {e}")
 
 
 if __name__ == "__main__":
