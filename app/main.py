@@ -6,9 +6,8 @@ def main():
     sys.stdout.flush()
 
     # Wait for user input
-    input()
     command = input()
-    sys.stdout.write(f"{command}: command not found\n")
+    print(f"{command}: command not found")
 
 
 
