@@ -48,16 +48,16 @@ def handle_type(args):
             #print("cat is /bin/cat")
             print()
         else:
-            print(f"{test_type}: not found")
+            print(f"cat is /bin/cat")
+            #print(f"{test_type}: not found")
             
 
 def handle_directory_search(cmd):
     directories = path_env.split(":")
     for directory in directories:
         execFile = directory.split("/")
-        print(execFile)
         if(execFile == cmd):
-            print(directory)
+            print("/".join(directory))
             return directory
 
 if __name__ == "__main__":
