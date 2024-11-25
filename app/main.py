@@ -52,6 +52,7 @@ def handle_directory_search(test_type):
         execFile = directory.split("/")
         if(execFile == test_type):
             return directory
-
+    print(path_env)
+    
 if __name__ == "__main__":
     main()
