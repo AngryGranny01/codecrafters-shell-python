@@ -3,7 +3,7 @@ import subprocess
 import sys
 
 # Allowed commands
-ALLOWED_COMMANDS = ["echo", "type"]
+ALLOWED_COMMANDS = ["echo", "type", "pwd"]
 
 # Get the PATH environment variable
 PATH_ENV = os.environ.get("PATH", "")
@@ -37,6 +37,8 @@ def main():
                 handle_echo(command_parts[1:])
             elif base_command == "type":
                 handle_type(command_parts[1:])
+            elif base_command == "pwd":
+                handle_pwd()
 
 def handle_echo(args):
     """Handle the echo command."""
@@ -82,6 +84,9 @@ def executeProgram(program_path, args=[]):
     except Exception as e:
         print(f"Error executing {program_path}: {e}")
 
+def handle_pwd():
+    cwd = os.getcwd()
+    print(cwd)
 
 if __name__ == "__main__":
     main()
