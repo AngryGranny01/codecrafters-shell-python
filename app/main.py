@@ -40,7 +40,7 @@ def main():
             elif base_command == "pwd":
                 handle_pwd()
             elif base_command == "cd":
-                handle_cd(command_parts[1:])
+                handle_cd(command_parts[1])
                 handle_pwd()
 
 
