@@ -13,12 +13,21 @@ def main():
         # Allowed commands (empty in this stage as we handle only missing commands)
         allowed_commands = []
 
+
         # Check if the command is not in the allowed commands
         if user_command not in allowed_commands:
             print(f"{user_command}: command not found")
         else:
-            break  # Exit loop if the command is valid (not required in this stage)
+            if user_command == "exit 0":
+                break
+            print("outsch") # Exit loop if the command is valid (not required in this stage)
 
+def commands(command):
+    match command:
+        case 400:
+            return 
+        case _:
+            return "Something's wrong with the internet"
 
 if __name__ == "__main__":
     main()
