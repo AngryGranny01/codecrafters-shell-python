@@ -11,7 +11,6 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
 
-        print(path_env)
         # Read user input
         user_command = input().strip()
         
@@ -39,7 +38,6 @@ def handle_type(args):
     test_command = args[0]
     if(test_command == "exit" or test_command in allowed_commands):
         print(f"{test_command} is a shell builtin")
-    
     else:
         print(f"{test_command}: not found")
 
