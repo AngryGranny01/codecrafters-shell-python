@@ -35,12 +35,23 @@ def handle_echo(args):
 
 
 def handle_type(args):
-    test_command = args[0]
-    if(test_command == "exit" or test_command in allowed_commands):
-        print(f"{test_command} is a shell builtin")
+    test_type = args[0]
+    if(test_type == "exit" or test_type in allowed_commands):
+        print(f"{test_type} is a shell builtin")
     else:
-        print(f"{test_command}: not found")
+        # Search for the command in directories
+        result = handle_directory_search(test_type)
+        if result:
+            print(result)
+        else:
+            print(f"{test_type}: not found")
 
+def handle_directory_search(test_type):
+    directories = path_env.split(":")
+    for directory in directories:
+        execFile = directory.split("/")
+        if(execFile == test_type):
+            return directory
 
 if __name__ == "__main__":
     main()
