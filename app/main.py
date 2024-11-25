@@ -2,9 +2,11 @@ import os
 import sys
 
 # Allowed commands
-allowed_commands = ["echo", "type"]
+ALLOWED_COMMANDS = ["echo", "type"]
 
-path_env = os.environ.get("PATH")
+# Get the PATH environment variable
+PATH_ENV = os.environ.get("PATH", "")
+
 def main():
     while True:  # Keep the shell running in a loop
         # Display the shell prompt
@@ -13,47 +15,59 @@ def main():
 
         # Read user input
         user_command = input().strip()
-        
+
         # Exit command
         if user_command == "exit 0":
             break
 
+        # Parse the command and arguments
         command_parts = user_command.split()
         base_command = command_parts[0] if command_parts else ""
 
         # Check if the command is not in the allowed commands
-        if base_command not in allowed_commands:
-            print(f"{user_command}: command not found")
+        if base_command not in ALLOWED_COMMANDS:
+            print(f"{base_command}: command not found")
         else:
             if base_command == "echo":
                 handle_echo(command_parts[1:])
-            if base_command == "type":
+            elif base_command == "type":
                 handle_type(command_parts[1:])
-            
+
+
 def handle_echo(args):
+    """Handle the echo command."""
     print(" ".join(args))
 
 
 def handle_type(args):
-    test_type = args[0]
-    if(test_type == "exit" or test_type in allowed_commands):
-        print(f"{test_type} is a shell builtin")
+    """Handle the type command."""
+    if not args:
+        print("type: missing argument")
+        return
+
+    command = args[0]
+
+    # Check if the command is a shell builtin
+    if command == "exit" or command in ALLOWED_COMMANDS:
+        print(f"{command} is a shell builtin")
     else:
         # Search for the command in directories
-        result = handle_directory_search(test_type)
+        result = handle_directory_search(command)
         if result:
-            print(result)
+            print(f"{command} is {result}")
         else:
-            print(f"{test_type}: not found")
-            
+            print(f"{command}: not found")
+
 
 def handle_directory_search(cmd):
-    directories = path_env.split(":")
+    """Search for a command in the PATH directories."""
+    directories = PATH_ENV.split(":")
     for directory in directories:
-        execFile = directory.split("/")
-        if(execFile == cmd):
-            print("/".join(directory))
-            return directory
+        command_path = os.path.join(directory, cmd)
+        if os.path.isfile(command_path) and os.access(command_path, os.X_OK):
+            return command_path  # Return the full path if command is found
+    return None  # Command not found
+
 
 if __name__ == "__main__":
     main()
