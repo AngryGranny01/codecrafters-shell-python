@@ -1,7 +1,9 @@
+import os
 import sys
 
 # Allowed commands
 allowed_commands = ["echo", "type"]
+path_env = os.environ.get("PATH", "")
 
 def main():
     while True:  # Keep the shell running in a loop
@@ -9,6 +11,7 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
 
+        print(path_env)
         # Read user input
         user_command = input().strip()
         
@@ -36,9 +39,10 @@ def handle_type(args):
     test_command = args[0]
     if(test_command == "exit" or test_command in allowed_commands):
         print(f"{test_command} is a shell builtin")
+    
     else:
         print(f"{test_command}: not found")
 
-
+def handle
 if __name__ == "__main__":
     main()
