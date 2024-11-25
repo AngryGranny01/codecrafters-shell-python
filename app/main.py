@@ -50,7 +50,6 @@ def handle_type(args):
 
 def handle_directory_search(cmd):
     directories = path_env.split(":")
-    print(directories)
     for directory in directories:
         execFile = directory.split("/")
         if(execFile == cmd):
