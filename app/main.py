@@ -4,7 +4,7 @@ import sys
 # Allowed commands
 allowed_commands = ["echo", "type"]
 
-
+path_env = os.environ.get("PATH")
 def main():
     while True:  # Keep the shell running in a loop
         # Display the shell prompt
@@ -48,8 +48,6 @@ def handle_type(args):
             
 
 def handle_directory_search(cmd):
-    path_env = os.getenv("PATH").split(":")
-    print(path_env)
     directories = path_env.split(":")
     for directory in directories:
         execFile = directory.split("/")
