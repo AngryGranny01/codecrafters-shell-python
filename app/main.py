@@ -11,7 +11,7 @@ def main():
         user_command = input()
 
         # Allowed commands (empty in this stage as we handle only missing commands)
-        allowed_commands = []
+        allowed_commands = ["exit 0"]
 
 
         # Check if the command is not in the allowed commands
