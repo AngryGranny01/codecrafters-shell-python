@@ -11,7 +11,7 @@ def main():
         user_command = input()
 
         # Allowed commands (empty in this stage as we handle only missing commands)
-        allowed_commands = ["exit 0"]
+        allowed_commands = ["exit 0", "echo"]
 
 
         # Check if the command is not in the allowed commands
@@ -20,12 +20,12 @@ def main():
         else:
             if user_command == "exit 0":
                 break
-            print("outsch") # Exit loop if the command is valid (not required in this stage)
+            commands(user_command) # Exit loop if the command is valid (not required in this stage)
 
 def commands(command):
     match command:
-        case 400:
-            return 
+        case "echo":
+            print(f"{command[5:]}\n") 
         case _:
             return "Something's wrong with the internet"
 
