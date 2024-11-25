@@ -30,7 +30,7 @@ def main():
             print(executeProgram(command_path))
 
         # Check if the command is not in the allowed commands
-        if base_command not in ALLOWED_COMMANDS:
+        elif base_command not in ALLOWED_COMMANDS:
             print(f"{base_command}: command not found")
         else:
             if base_command == "echo":
@@ -73,7 +73,7 @@ def handle_directory_search(cmd):
 
 def executeProgram(program_path, args=[]):
     try:
-        result = subprocess.run([program_path] + args, capture_output=True)
+        result = subprocess.run([program_path] + args, capture_output=True, text=True)
         return result
     except FileNotFoundError:
         print(f"{program_path}: Command not found")
