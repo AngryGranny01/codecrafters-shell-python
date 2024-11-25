@@ -92,20 +92,18 @@ def handle_pwd():
     print(cwd)
 
 # Handle the 'cd' command and change directories appropriately.
-def handle_cd(directory):
-    if directory == "./":
-        print("do something")
-    elif directory == "../":
-        print("do something")
-    elif directory == "./dir":
-        print("do something")
-    elif directory == "~":
-        print("do something")
+def handle_cd(path):
+    #relative Paths
+    if path in ["./", "../"]:
+        relativePath = path.split("/")
+        print(relativePath)
+
+    #absolute paths
     else:
-        if os.path.exists(directory) and os.path.isdir(directory):
-            os.chdir(directory)
+        if os.path.exists(path) and os.path.isdir(path):
+            os.chdir(path)
         else: 
-            print(f"cd: {directory}: No such file or directory")
+            print(f"cd: {path}: No such file or directory")
 
 
 if __name__ == "__main__":
