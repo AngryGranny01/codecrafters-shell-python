@@ -94,9 +94,11 @@ def handle_pwd():
 # Handle the 'cd' command and change directories appropriately.
 def handle_cd(path):
     #relative Paths
-    if path in ["./", "../"]:
-        relativePath = path.split("/")
-        print(relativePath)
+    if path[:2] == "./" | path[:3] == "../":
+        newPath = path.split("/")
+        for relativePath in newPath:
+            if(relativePath == "../"):
+                os.chdir("..")
 
     #absolute paths
     else:
