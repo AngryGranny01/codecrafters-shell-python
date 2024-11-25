@@ -29,7 +29,7 @@ def main():
             
 
 def handle_echo(args):
-    print("".join(args))
+    print(" ".join(args))
 
 if __name__ == "__main__":
     main()
