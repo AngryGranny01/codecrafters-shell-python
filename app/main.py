@@ -48,7 +48,8 @@ def handle_type(args):
             
 
 def handle_directory_search(cmd):
-    path_env=os.getenv("PATH").split(":")
+    path_env = os.getenv("PATH").split(":")
+    print(path_env)
     directories = path_env.split(":")
     for directory in directories:
         execFile = directory.split("/")
