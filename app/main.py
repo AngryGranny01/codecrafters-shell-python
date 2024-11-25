@@ -3,7 +3,6 @@ import sys
 
 # Allowed commands
 allowed_commands = ["echo", "type"]
-path_env = os.environ.get("PATH", "")
 
 def main():
     while True:  # Keep the shell running in a loop
@@ -47,12 +46,13 @@ def handle_type(args):
             print(f"{test_type}: not found")
 
 def handle_directory_search(test_type):
+    path_env = os.environ.get("PATH", "")
     directories = path_env.split(":")
     for directory in directories:
         execFile = directory.split("/")
         if(execFile == test_type):
             return directory
     print(path_env)
-    
+
 if __name__ == "__main__":
     main()
