@@ -3,7 +3,6 @@ import sys
 
 # Allowed commands
 allowed_commands = ["echo", "type"]
-path_env = os.environ.get("PATH", "")
 
 def main():
     while True:  # Keep the shell running in a loop
@@ -11,6 +10,7 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
 
+        path_env = os.environ.get("PATH", "")
         print(path_env)
         # Read user input
         user_command = input().strip()
