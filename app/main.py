@@ -2,13 +2,22 @@ import sys
 
 
 def main():
-    sys.stdout.write("$ ")
-    sys.stdout.flush()
+    #while True:  # Keep the shell running in a loop
+        # Display the shell prompt
+        sys.stdout.write("$ ")
+        sys.stdout.flush()
 
-    # Wait for user input
-    command = input()
-    print(f"{command}: command not found")
+        # Read user input
+        user_command = input()
 
+        # Allowed commands (empty in this stage as we handle only missing commands)
+        allowed_commands = []
+
+        # Check if the command is not in the allowed commands
+        if user_command not in allowed_commands:
+            print(f"{user_command}: command not found")
+        else:
+            print  # Exit loop if the command is valid (not required in this stage)
 
 
 if __name__ == "__main__":
