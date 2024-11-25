@@ -54,6 +54,7 @@ def handle_directory_search(cmd):
     for directory in directories:
         execFile = directory.split("/")
         if(execFile == cmd):
+            print(directory)
             return directory
 
 if __name__ == "__main__":
