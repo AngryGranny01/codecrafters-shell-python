@@ -1,5 +1,7 @@
 import sys
 
+# Allowed commands
+allowed_commands = ["echo", "type"]
 
 def main():
     while True:  # Keep the shell running in a loop
@@ -14,9 +16,6 @@ def main():
         if user_command == "exit 0":
             break
 
-        # Allowed commands (empty in this stage as we handle only missing commands)
-        allowed_commands = ["echo"]
-
         command_parts = user_command.split()
         base_command = command_parts[0] if command_parts else ""
 
@@ -26,10 +25,20 @@ def main():
         else:
             if base_command == "echo":
                 handle_echo(command_parts[1:])
+            if base_command == "type":
+                handle_type(command_parts[1:])
             
-
 def handle_echo(args):
     print(" ".join(args))
+
+
+def handle_type(args):
+    test_command = args[0]
+    if(test_command == "exit" or test_command in allowed_commands):
+        print(f"{test_command} is a shell builtin")
+    else:
+        print(f"{test_command}: not found")
+
 
 if __name__ == "__main__":
     main()
